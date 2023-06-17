@@ -8,7 +8,7 @@ const pathDir = path.dirname(fileURLToPath(import.meta.url));
 const write = async () => {
     try {
         const data = createWriteStream(path.join(pathDir, '/files/fileToWrite.txt'), 'utf8');
-        process.stdout.on('data', (chunk) => {
+        process.stdin.on('data', (chunk) => {
             data.write(chunk)
         })
     } catch (error) {

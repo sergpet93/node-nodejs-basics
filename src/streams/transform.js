@@ -1,5 +1,13 @@
+import * as fs from 'node:fs';
+
 const transform = async () => {
-    // Write your code here 
+    try{
+        process.stdout.on('data', (chunk) => {
+            process.stdin.on()
+        })
+    } catch (error) {
+        throw new Error(error)
+    }
 };
 
 await transform();
