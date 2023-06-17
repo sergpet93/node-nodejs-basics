@@ -1,13 +1,14 @@
-import * as fs from 'node:fs';
+import {Transform, pipeline} from 'node:stream'
 
 const transform = async () => {
-    try{
-        process.stdout.on('data', (chunk) => {
-            process.stdin.on()
-        })
-    } catch (error) {
-        throw new Error(error)
-    }
+    const transformStream = new Transform({
+        transform(chunk, _encoding, callback) {
+            callback( null, chunk.toString().trim().split('').reverse().join('') + '\n')
+        },
+    });
+    pipeline(process.stdin, transformStream, process.stdout, (error) => {
+        if (error) throw new Error(error);
+    });
 };
 
 await transform();
